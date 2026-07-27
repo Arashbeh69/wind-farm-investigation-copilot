@@ -1,0 +1,27 @@
+# PyCharm
+.idea/
+
+# Python virtual environment
+.venv/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment variables and secrets
+.env
+
+# Local datasets and model artifacts
+data/raw/
+data/interim/
+data/processed/
+models/
+
+# Operating-system files
+.DS_Store
+Thumbs.db
