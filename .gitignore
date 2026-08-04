@@ -25,3 +25,6 @@ models/
 # Operating-system files
 .DS_Store
 Thumbs.db
+
+# Local project planning
+PROJECT_ROADMAP.md
