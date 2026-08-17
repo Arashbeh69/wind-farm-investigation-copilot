@@ -8,7 +8,7 @@ Git; this README documents how to obtain and organize them.
 
 The project uses the open [Kelmarsh Wind Farm dataset on
 Zenodo](https://zenodo.org/records/8252025), published by Cubico Sustainable
-Investments Ltd under the **CC BY 4.0** license.
+Investments Ltd under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) license.
 
 The dataset contains ten-minute SCADA and status-event exports for six Senvion
 MM92 wind turbines from 2016 through 2022. It also provides turbine static data,
@@ -33,9 +33,8 @@ Also download:
 - `Kelmarsh_WT_static.csv`
 - `Kelmarsh_WT_dataSignalMapping.csv`
 
-The grid-meter, PMU, and KMZ files are available from the same record but are
-outside the current project scope. They may be added later if they provide
-useful investigation evidence.
+The Zenodo record also contains grid-meter, PMU, and KMZ files. These files are
+not required to reproduce the analyses currently included in this repository.
 
 ## Expected Local Structure
 
@@ -44,6 +43,7 @@ After downloading and extracting the files, use this structure:
 ```text
 data/
 ├── README.md
+├── file_inventory.csv
 ├── raw/
 │   ├── kelmarsh_2016/
 │   ├── kelmarsh_2017/
@@ -63,25 +63,20 @@ Each yearly directory should contain that year's extracted turbine SCADA and
 status-event CSV files. The archives may also remain inside their corresponding
 yearly directories for traceability.
 
-## Repository Policy
+## Data Availability in This Repository
 
-The following directories are ignored by Git:
+The full raw and processed datasets are not included in the Git repository because of their size. The `data/raw/`, `data/interim/`, and `data/processed/` directories are excluded through `.gitignore`.
 
-- `data/raw/`
-- `data/interim/`
-- `data/processed/`
+The repository contains only documentation and small metadata artifacts such as [`file_inventory.csv`](./file_inventory.csv). Use the source and directory instructions above to reproduce the local data setup.
 
-Only documentation, code, and small metadata summaries should be committed.
-Never commit the full SCADA archives, extracted raw CSV files, or generated
-processed datasets.
+## Validated Dataset Scope
 
-## Current Project Status
+- The project uses SCADA and Status-event data from all six Kelmarsh turbines for 2016–2022.
+- Each yearly dataset contains six turbine SCADA files and six Status-event files.
+- Turbine static metadata and signal mappings are stored locally under `data/raw/metadata/`.
+- The 2016 exploratory notebook examines Turbine 1 in detail to establish the investigation workflow and initial cleaning requirements.
+- The cross-year validation notebook verifies file completeness, schema changes, timestamp coverage, measurement availability, value ranges, and Status-event integrity across all 84 raw files.
+- [`file_inventory.csv`](./file_inventory.csv) provides a tracked metadata-only inventory without publishing raw measurements or local absolute paths.
+- The resulting data contract defines the required, optional, derived, and excluded fields for the future cleaning pipeline.
 
-- The 2016 archive and its six SCADA and six status files are available locally.
-- Phase 1 validated the 2016 schema and performed detailed EDA on Turbine 1.
-- Phase 2 will acquire the 2017–2022 archives and validate schemas, timestamp
-  coverage, missingness, units, and investigation fields across all turbines and
-  years.
-
-See [`../notebooks/README.md`](../notebooks/README.md) for the completed Phase 1
-analysis and results.
+See [`../notebooks/README.md`](../notebooks/README.md) for notebook descriptions and analytical findings.
