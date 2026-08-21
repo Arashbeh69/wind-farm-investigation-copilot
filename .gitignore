@@ -28,3 +28,6 @@ Thumbs.db
 
 # Local project planning
 PROJECT_ROADMAP.md
+
+# Python packaging artifacts
+*.egg-info/
